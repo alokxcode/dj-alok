@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=DJ ALOK
+Comment=Fast minimalist music player
+Exec=/home/manavya/a/3/music player/music-player.sh
+Icon=/opt/pt/music.png
+Terminal=false
+Categories=AudioVideo;Audio;Player;
+Keywords=music;audio;player;mp3;
+StartupNotify=true

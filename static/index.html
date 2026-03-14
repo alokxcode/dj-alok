@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="btn-home-icon" id="home-btn" title="Home">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </button>
+                <div class="playlists-dropdown">
+                    <button class="btn-playlist-dropdown dropdown-toggle" id="playlists-dropdown-btn" title="Playlists">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18V5l12-2v13"/>
+                            <circle cx="6" cy="18" r="3"/>
+                            <circle cx="18" cy="16" r="3"/>
+                        </svg>
+                        <span id="current-playlist-name">Library</span>
+                        <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </button>
+                        <div class="dropdown-menu" id="playlists-dropdown-menu">
+                        <div class="dropdown-header">
+                            <span>Playlists</span>
+                            <button class="btn-icon" id="new-playlist-btn" title="Create Playlist">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="playlist-items">
+                            <div class="playlist-item active" data-playlist-id="library">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <polyline points="9 22 9 12 15 12 15 22"/>
+                                </svg>
+                                <span>Library</span>
+                            </div>
+                            <div id="user-playlists">
+                                <!-- User playlists will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="logo-container">
+                <button class="btn-control btn-studio-right" id="studio-toggle-btn" title="Toggle DJ Studio">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- DJ Mixer/Console base -->
+                        <rect x="6" y="2" width="12" height="20" rx="1" fill="currentColor"/>
+                        
+                        <!-- Top turntable/vinyl -->
+                        <circle cx="12" cy="7" r="3.5" fill="#333" stroke="currentColor" stroke-width="0.5"/>
+                        <circle cx="12" cy="7" r="2.5" fill="currentColor" opacity="0.3"/>
+                        <circle cx="12" cy="7" r="0.8" fill="currentColor"/>
+                        
+                        <!-- Bottom turntable/vinyl -->
+                        <circle cx="12" cy="17" r="3.5" fill="#333" stroke="currentColor" stroke-width="0.5"/>
+                        <circle cx="12" cy="17" r="2.5" fill="currentColor" opacity="0.3"/>
+                        <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+                        
+                        <!-- Center mixer controls -->
+                        <rect x="11" y="11" width="2" height="4" rx="1" fill="#666"/>
+                        <circle cx="12" cy="12.5" r="0.8" fill="#666"/>
+                    </svg>
+                </button>
+                <h1 class="logo" id="logo-home">
+                    <span>DJ ALOK</span>
+                </h1>
+            </div>
+            <div class="header-controls">
+                <div class="eq-preset-dropdown">
+                    <button class="btn-preset-dropdown dropdown-toggle" id="eq-preset-dropdown-btn" title="Audio Preset">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18V5l12-2v13"/>
+                            <circle cx="6" cy="18" r="3"/>
+                            <circle cx="18" cy="16" r="3"/>
+                        </svg>
+                        <span id="current-eq-preset-name">Enhanced</span>
+                        <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" id="eq-preset-dropdown-menu">
+                        <div class="dropdown-divider"></div>
+                        <div class="preset-items">
+                            <div class="preset-item active" data-preset="enhanced">
+                                <span>Enhanced</span>
+                            </div>
+                            <div class="preset-item" data-preset="boom">
+                                <span>Boom</span>
+                            </div>
+                            <div class="preset-item" data-preset="flat">
+                                <span>Flat</span>
+                            </div>
+                            <div class="preset-item" data-preset="bass_boost">
+                                <span>Bass Boost</span>
+                            </div>
+                            <div class="preset-item" data-preset="treble_boost">
+                                <span>Treble Boost</span>
+                            </div>
+                            <div class="preset-item" data-preset="powerful">
+                                <span>Powerful</span>
+                            </div>
+                            <div class="preset-item" data-preset="vocal">
+                                <span>Vocal</span>
+                            </div>
+                            <div class="preset-item" data-preset="rock">
+                                <span>Rock</span>
+                            </div>
+                            <div class="preset-item" data-preset="jazz">
+                                <span>Jazz</span>
+                            </div>
+                            <div class="preset-item" data-preset="classical">
+                                <span>Classical</span>
+                            </div>
+                            <div class="preset-item" data-preset="electronic">
+                                <span>Electronic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-control btn-fullscreen-visualizer" id="fullscreen-visualizer-btn" title="Fullscreen Visualizer">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                    </svg>
+                </button>
+                <div class="playlist-menu-dropdown">
+                    <button class="btn-playlist-menu" id="playlist-menu-btn" title="More options">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"/>
+                            <circle cx="12" cy="5" r="1"/>
+                            <circle cx="12" cy="19" r="1"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" id="playlist-menu-dropdown">
+                        <div class="menu-search-bar">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="m21 21-4.35-4.35"/>
+                            </svg>
+                            <input type="text" id="search" placeholder="Search songs, artists, albums..." autocomplete="off">
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="menu-item" id="scan-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                            </svg>
+                            <span>Rescan Library</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <!-- Download Section -->
+                        <div class="download-section">
+                            <div class="menu-search-bar">
+                                <svg id="downloadBtn" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor: pointer;">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                <input type="url" id="downloadUrl" placeholder="Paste URL to download" autocomplete="off">
+                            </div>
+                            <div id="downloadStatus" class="download-status" style="display: none;">
+                                <div class="progress-bar">
+                                    <div id="downloadProgress" class="progress-fill"></div>
+                                </div>
+                                <div id="downloadMessage" class="download-message"></div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="menu-item" id="toggle-panels-btn" style="cursor: pointer;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="18" rx="1"/>
+                                <rect x="14" y="3" width="7" height="18" rx="1"/>
+                            </svg>
+                            <span>&lt;--&gt;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Playlist -->
+            <div class="playlist">
+                <div class="playlist-header">
+                    <span class="playlist-count" id="song-count">0 songs</span>
+                    <span class="playlist-title" id="playlist-title"></span>
+                </div>
+                <div class="song-list" id="song-list">
+                    <!-- Songs will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Lyrics View -->
+            <div class="lyrics-view" id="lyrics-view" style="display: none;">
+                <div class="lyrics-content-area">
+                    <div class="lyrics-display" id="lyrics-display">
+                        <div class="lyrics-empty-state">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10 9 9 9 8 9"/>
+                            </svg>
+                            <p>No lyrics available</p>
+                            <p class="lyrics-hint">Use song menu to add lyrics</p>
+                        </div>
+                        <div class="lyrics-text" id="lyrics-text" style="display: none;"></div>
+                    </div>
+                    <div class="lyrics-editor-container" id="lyrics-editor-container" style="display: none;">
+                        <textarea id="lyrics-editor" placeholder="Enter or paste lyrics here...&#10;&#10;You can add or edit lyrics for the currently playing song."></textarea>
+                        <div class="lyrics-editor-actions">
+                            <button class="btn-secondary" id="cancel-edit-btn">Cancel</button>
+                            <button class="btn-primary" id="save-lyrics-btn">Save Lyrics</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fullscreen Visualizer View -->
+            <div class="fullscreen-visualizer-view" id="fullscreen-visualizer-view" style="display: none;">
+                <canvas id="fullscreen-canvas"></canvas>
+            </div>
+        </main>
+
+        <!-- Player Controls -->
+        <footer class="player">
+            <div class="player-info">
+                <div class="album-art" id="album-art">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </div>
+                <div class="song-info">
+                    <div class="song-title" id="current-title">No song playing</div>
+                    <div class="song-artist" id="current-artist">Select a song to start</div>
+                </div>
+            </div>
+
+            <div class="player-controls">
+                <div class="control-buttons">
+                    <button class="btn-control" id="shuffle-btn" title="Shuffle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>
+                        </svg>
+                    </button>
+                    <button class="btn-control" id="prev-btn" title="Previous">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-play" id="play-btn" title="Play">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-control" id="next-btn" title="Next">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 6v12l8.5-6zm10 0h2v12h-2z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-control" id="repeat-btn" title="Repeat">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 1l4 4-4 4"/>
+                            <path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/>
+                            <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="progress-container">
+                    <span class="time" id="current-time">0:00</span>
+                    <div class="progress-bar">
+                        <input type="range" id="progress" min="0" max="100" value="0" step="0.1">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span class="time" id="duration">0:00</span>
+                </div>
+            </div>
+
+            <div class="player-volume">
+                <button class="btn-control btn-lyrics-left" id="lyrics-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Musical note -->
+                        <path d="M12 3V15.5C11.37 15.19 10.7 15 10 15C7.79 15 6 16.79 6 19C6 21.21 7.79 23 10 23C12.21 23 14 21.21 14 19V7H18V3H12Z" fill="currentColor"/>
+                        
+                        <!-- Text lines representing lyrics -->
+                        <rect x="15" y="10" width="6" height="1.5" rx="0.75" fill="currentColor" opacity="0.7"/>
+                        <rect x="15" y="13" width="5" height="1.5" rx="0.75" fill="currentColor" opacity="0.7"/>
+                        <rect x="15" y="16" width="6" height="1.5" rx="0.75" fill="currentColor" opacity="0.7"/>
+                    </svg>
+                </button>
+                <button class="btn-control btn-instrumental-left" id="instrumental-toggle-btn" title="Instrumental Zone">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Piano keys background -->
+                        <rect x="4" y="8" width="16" height="10" rx="1" fill="currentColor" opacity="0.3"/>
+                        <!-- White keys -->
+                        <rect x="5" y="9" width="2" height="7" rx="0.5" fill="currentColor"/>
+                        <rect x="8" y="9" width="2" height="7" rx="0.5" fill="currentColor"/>
+                        <rect x="11" y="9" width="2" height="7" rx="0.5" fill="currentColor"/>
+                        <rect x="14" y="9" width="2" height="7" rx="0.5" fill="currentColor"/>
+                        <rect x="17" y="9" width="2" height="7" rx="0.5" fill="currentColor"/>
+                        <!-- Black keys -->
+                        <rect x="6.5" y="9" width="1" height="4" rx="0.3" fill="#333"/>
+                        <rect x="9.5" y="9" width="1" height="4" rx="0.3" fill="#333"/>
+                        <rect x="15.5" y="9" width="1" height="4" rx="0.3" fill="#333"/>
+                        <!-- Sound waves -->
+                        <path d="M4 6 Q 6 5, 8 6 T 12 6" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+                        <path d="M12 6 Q 14 5, 16 6 T 20 6" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+                    </svg>
+                </button>
+                <button class="btn-control" id="volume-btn" title="Mute">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                    </svg>
+                </button>
+                <input type="range" id="volume" min="0" max="100" value="80" class="volume-slider">
+            </div>
+        </footer>
+
+        <!-- DJ Studio Full Page -->
+        <div class="studio-page" id="studio-panel">
+            <div class="studio-background"></div>
+            <div class="studio-content">
+                <button class="btn-studio-reset" id="reset-eq-btn" title="Reset All" style="display:none;">↻ Reset</button>
+                <button class="btn-close-studio" id="close-studio-btn" style="display:none;">× Exit Studio</button>
+                <div class="studio-main">
+                    <!-- Vertical Button Bar Left -->
+                    <div class="studio-button-bar-left">
+                        <button class="bar-btn active" id="lighting-theme-green" data-lighting-theme="green" title="Green Lighting">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1db954" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="lighting-theme-blue" data-lighting-theme="blue" title="Blue Lighting">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e90ff" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="lighting-theme-purple" data-lighting-theme="purple" title="Purple Lighting">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9b59b6" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="lighting-theme-red" data-lighting-theme="red" title="Red Lighting">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="lighting-theme-orange" data-lighting-theme="orange" title="Orange Lighting">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="lighting-theme-cyan" data-lighting-theme="cyan" title="Cyan Lighting">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d9ff" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Left Panel: Spectrum Theme -->
+                    <div class="studio-left-panel">
+                        <div class="spectrum-colors">
+                            <h3>Spectrum Theme</h3>
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; width: 100%;">
+                                <button class="spectrum-color-btn active" data-color="green">Classic</button>
+                                <button class="spectrum-color-btn" data-color="neon">Neon</button>
+                                <button class="spectrum-color-btn" data-color="cyberpunk">Cyberpunk</button>
+                                <button class="spectrum-color-btn" data-color="fire">Fire</button>
+                                <button class="spectrum-color-btn" data-color="ocean">Ocean</button>
+                                <button class="spectrum-color-btn" data-color="rainbow">Rainbow</button>
+                                <button class="spectrum-color-btn" data-color="sunset">Sunset</button>
+                                <button class="spectrum-color-btn" data-color="ice">Ice</button>
+                                <button class="spectrum-color-btn" data-color="lava">Lava</button>
+                                <button class="spectrum-color-btn" data-color="purple">Purple</button>
+                                <button class="spectrum-color-btn" data-color="gold">Gold</button>
+                            </div>
+                            <div class="custom-color-section">
+                                <h4>Custom</h4>
+                                <div class="custom-color-inputs">
+                                    <input type="color" id="custom-color-1" value="#1db954">
+                                    <input type="color" id="custom-color-2" value="#1ed760">
+                                    <button class="btn-apply-custom" id="apply-custom-colors">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                            <polyline points="20 6 9 17 4 12"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="spectrum-shapes">
+                            <h3>Bar Shape</h3>
+                            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+                                <button class="shape-btn active" data-shape="bars" title="Classic Bars">▬</button>
+                                <button class="shape-btn" data-shape="rounded" title="Rounded Bars">▭</button>
+                                <button class="shape-btn" data-shape="circles" title="Circles">⬤</button>
+                                <button class="shape-btn" data-shape="lines" title="Lines">│</button>
+                                <button class="shape-btn" data-shape="dots" title="Dots">⋮</button>
+                                <button class="shape-btn" data-shape="wave" title="Wave">∿</button>
+                                <button class="shape-btn" data-shape="blocks" title="Blocks">▦</button>
+                                <button class="shape-btn" data-shape="mirror" title="Mirror Vertical" style="transform: rotate(-90deg);">⫴</button>
+                                <button class="shape-btn" data-shape="flames" title="Flames">▲▲</button>
+                                <button class="shape-btn" data-shape="arches" title="Arches">⌒</button>
+                                <button class="shape-btn" data-shape="diamonds" title="Diamonds">◆</button>
+                                <button class="shape-btn" data-shape="pyramids" title="Pyramids">▲</button>
+                                <button class="shape-btn" data-shape="rings" title="Rings">◎</button>
+                                <button class="shape-btn" data-shape="hexagons" title="Hexagons">⬡</button>
+                                <button class="shape-btn" data-shape="lightning" title="Lightning">⟋</button>
+                                <button class="shape-btn" data-shape="neon" title="Neon">◫</button>
+                                <button class="shape-btn" data-shape="squares" title="Squares">▢</button>
+                                <button class="shape-btn" data-shape="stars" title="Stars">★</button>
+                                <button class="shape-btn" data-shape="triangles" title="Triangles">▼</button>
+                                <button class="shape-btn" data-shape="crosses" title="Crosses">✕</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Center Panel: Spectrum & Equalizer -->
+                    <div class="studio-center-panel">
+                    <div class="studio-equalizer">
+                        <div class="frequency-visualizer" id="frequency-visualizer">
+                            <canvas id="frequency-canvas"></canvas>
+                            <button class="fullscreen-btn" id="fullscreen-btn" title="Toggle Fullscreen">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="eq-slider-container">
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-0" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-0">0</div>
+                        <div class="eq-label">32Hz</div>
+                    </div>
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-1" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-1">0</div>
+                        <div class="eq-label">64Hz</div>
+                    </div>
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-2" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-2">0</div>
+                        <div class="eq-label">125Hz</div>
+                    </div>
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-3" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-3">0</div>
+                        <div class="eq-label">250Hz</div>
+                    </div>
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-4" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-4">0</div>
+                        <div class="eq-label">500Hz</div>
+                    </div>
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-5" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-5">0</div>
+                        <div class="eq-label">1kHz</div>
+                    </div>
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-6" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-6">0</div>
+                        <div class="eq-label">2kHz</div>
+                    </div>
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-7" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-7">0</div>
+                        <div class="eq-label">4kHz</div>
+                    </div>
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-8" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-8">0</div>
+                        <div class="eq-label">8kHz</div>
+                    </div>
+                    <div class="eq-slider-item">
+                        <div class="eq-slider-wrapper">
+                            <div class="eq-scale">
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+10</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>+5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>0</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-5</span></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark"><div class="eq-scale-tick"></div></div>
+                                <div class="eq-scale-mark major"><div class="eq-scale-tick"></div><span>-10</span></div>
+                            </div>
+                            <input type="range" id="eq-9" class="eq-slider" min="-10" max="10" value="0" step="0.5" orient="vertical">
+                        </div>
+                        <div class="eq-value" id="eq-value-9">0</div>
+                        <div class="eq-label">16kHz</div>
+                    </div>
+                    </div>
+                </div>
+                    </div>
+                    
+                    <!-- Right Panel: Visualization & Audio Controls -->
+                    <div class="studio-right-panel">
+                        <div class="visualization-controls">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                                <h3 style="margin: 0;">Visualization</h3>
+                                <button id="reset-all-controls" title="Reset All Controls" style="background: none; border: none; padding: 0.25rem; cursor: pointer; color: var(--text-secondary); transition: color 0.2s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg></button>
+                            </div>
+                            <div class="control-item control-item-arrows">
+                                <div class="arrow-buttons">
+                                    <button class="arrow-btn" id="arrow-left" data-direction="left" title="Start from left">→</button>
+                                    <button class="arrow-btn active" id="arrow-right" data-direction="right" title="Start from right">←</button>
+                                    <button class="arrow-btn" id="arrow-up" data-direction="up" title="Mirror Vertical">↕</button>
+                                    <button class="arrow-btn" id="arrow-horizontal" data-direction="horizontal" title="Mirror Horizontal">↔</button>
+                                    <button class="arrow-btn" id="toggle-background" title="Toggle Background Image">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                                            <polyline points="21 15 16 10 5 21"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="control-item">
+                                <label for="bar-sensitivity">Sensitivity</label>
+                                <input type="range" id="bar-sensitivity" min="0.5" max="2" value="1" step="0.1" class="control-slider">
+                                <span class="control-value" id="sensitivity-value">1.0x</span>
+                            </div>
+                            <div class="control-item">
+                                <label for="animation-speed">Animation</label>
+                                <input type="range" id="animation-speed" min="0.5" max="2" value="1" step="0.1" class="control-slider">
+                                <span class="control-value" id="animation-value">1.0x</span>
+                            </div>
+                            <div class="control-item">
+                                <label for="bar-intensity">Intensity</label>
+                                <input type="range" id="bar-intensity" min="32" max="128" value="64" step="8" class="control-slider">
+                                <span class="control-value" id="intensity-bar-value">64</span>
+                            </div>
+                            <div class="control-item">
+                                <label for="bar-gap">Gap</label>
+                                <input type="range" id="bar-gap" min="0" max="10" value="2" step="1" class="control-slider">
+                                <span class="control-value" id="gap-bar-value">2px</span>
+                            </div>
+                            <div class="control-item">
+                                <label for="bar-width">Width</label>
+                                <input type="range" id="bar-width" min="0.5" max="2" value="1" step="0.1" class="control-slider">
+                                <span class="control-value" id="width-bar-value">1.0x</span>
+                            </div>
+                            <div class="control-item">
+                                <label for="bar-shadow">Shadow</label>
+                                <input type="range" id="bar-shadow" min="0" max="30" value="0" step="1" class="control-slider">
+                                <span class="control-value" id="shadow-bar-value">0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="audio-controls">
+                            <div class="control-item">
+                                <label for="eq-intensity">EQ Intensity</label>
+                                <input type="range" id="eq-intensity" min="0" max="2" value="1" step="0.1" class="control-slider">
+                                <span class="control-value" id="eq-intensity-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vertical Button Bar -->
+                    <div class="studio-button-bar">
+                        <button class="bar-btn" id="bar-shape-btn" title="Lyrics Color">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 2v20M2 12h20"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="fullscreen-btn" title="90s Screen">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="screenshot-btn" title="Raining Glass">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                                <line x1="12" y1="2" x2="12" y2="6"/>
+                                <line x1="9" y1="4" x2="9" y2="8"/>
+                                <line x1="15" y1="4" x2="15" y2="8"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="settings-btn" title="Settings">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="lyrics-up-btn" title="Lyrics Up">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="18 15 12 9 6 15"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn active" id="lyrics-center-btn" title="Lyrics Center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="4" y1="12" x2="20" y2="12"/>
+                                <line x1="12" y1="4" x2="12" y2="20"/>
+                            </svg>
+                        </button>
+                        <button class="bar-btn" id="lyrics-down-btn" title="Lyrics Down">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden color picker for lyrics -->
+    <input type="color" id="lyrics-color-picker" value="#ffffff" style="display: none;">
+
+    <!-- Create Playlist Modal -->
+    <div class="modal" id="create-playlist-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Playlist</h3>
+                <button class="btn-close" id="close-modal-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="playlist-name" placeholder="Playlist name" maxlength="50">
+                <textarea id="playlist-desc" placeholder="Description (optional)" rows="3" maxlength="200"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-playlist-btn">Cancel</button>
+                <button class="btn-primary" id="save-playlist-btn">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add to Playlist Modal -->
+    <div class="modal" id="add-to-playlist-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add to Playlist</h3>
+                <button class="btn-close" id="close-add-modal-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="playlist-select-list">
+                    <!-- Playlists will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Lyrics Modal -->
+    <div class="modal" id="edit-lyrics-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 id="edit-lyrics-modal-title">Edit Lyrics</h3>
+                <button class="btn-close" id="close-edit-lyrics-modal-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-hint">Add timestamps in LRC format [mm:ss.xx] for synchronized lyrics, or just paste plain text.</p>
+                <textarea id="modal-lyrics-editor" placeholder="Enter or paste lyrics here...&#10;&#10;For time-synced lyrics use LRC format:&#10;[00:12.50]First line of lyrics&#10;[00:17.00]Second line of lyrics&#10;&#10;Or just paste plain text without timestamps."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="modal-delete-lyrics-btn" style="margin-right: auto; display: none;">Delete Lyrics</button>
+                <button class="btn-secondary" id="cancel-edit-lyrics-btn">Cancel</button>
+                <button class="btn-primary" id="save-edit-lyrics-btn">Save Lyrics</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lyrics Full Page -->
+    <div class="lyrics-page" id="lyrics-panel">
+        <div class="lyrics-background"></div>
+        <div class="lyrics-content">
+            <div class="lyrics-header">
+                <div class="lyrics-song-info">
+                    <h2 id="lyrics-song-title">No song selected</h2>
+                    <p id="lyrics-song-artist" class="lyrics-artist">Select a song to view lyrics</p>
+                </div>
+                <div class="lyrics-actions">
+                    <button class="btn-lyrics-action" id="edit-lyrics-btn" title="Edit Lyrics">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                        <span>Edit</span>
+                    </button>
+                    <button class="btn-lyrics-action" id="delete-lyrics-btn" style="display: none;" title="Delete Lyrics">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                        <span>Delete</span>
+                    </button>
+                    <button class="btn-close-lyrics" id="close-lyrics-btn" title="Close">× Close</button>
+                </div>
+            </div>
+            <div class="lyrics-main">
+                <div class="lyrics-display" id="lyrics-display">
+                    <div class="lyrics-empty-state">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                        <p>No lyrics available</p>
+                        <p class="lyrics-hint">Click "Edit" to add lyrics for this song</p>
+                    </div>
+                    <div class="lyrics-text" id="lyrics-text" style="display: none;"></div>
+                </div>
+                <div class="lyrics-editor-container" id="lyrics-editor-container" style="display: none;">
+                    <textarea id="lyrics-editor" placeholder="Enter or paste lyrics here...&#10;&#10;You can add or edit lyrics for the currently playing song."></textarea>
+                    <div class="lyrics-editor-actions">
+                        <button class="btn-secondary" id="cancel-edit-btn">Cancel</button>
+                        <button class="btn-primary" id="save-lyrics-btn">Save Lyrics</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instrumental Zone Full Page -->
+    <div class="instrumental-page" id="instrumental-panel">
+        <div class="instrumental-background"></div>
+        <div class="instrumental-content">
+            <button class="btn-close-instrumental" id="close-instrumental-btn">×</button>
+            
+            <div class="instrumental-main">
+                <!-- Centered Vinyl Record with Poster -->
+                <div class="vinyl-container">
+                    <div class="vinyl-record" id="vinyl-record">
+                        <div class="poster-on-vinyl" id="poster-image">
+                            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="vinyl-outer-ring"></div>
+                        <div class="vinyl-grooves"></div>
+                        <div class="vinyl-center-hole"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Alert Modal -->
+    <div class="custom-modal" id="custom-alert-modal">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <h3 id="custom-alert-title">Notice</h3>
+            </div>
+            <div class="custom-modal-body">
+                <p id="custom-alert-message"></p>
+            </div>
+            <div class="custom-modal-footer">
+                <button class="btn-primary" id="custom-alert-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirm Modal -->
+    <div class="custom-modal" id="custom-confirm-modal">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9 9h.01M15 9h.01M8 13a8 8 0 0 0 8 0"/>
+                </svg>
+                <h3 id="custom-confirm-title">Confirm</h3>
+            </div>
+            <div class="custom-modal-body">
+                <p id="custom-confirm-message"></p>
+            </div>
+            <div class="custom-modal-footer">
+                <button class="btn-secondary" id="custom-confirm-cancel">Cancel</button>
+                <button class="btn-primary" id="custom-confirm-ok">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audio" preload="metadata"></audio>
+    <script src="/app.js"></script>
+</body>
+</html>

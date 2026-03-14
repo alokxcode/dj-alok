@@ -1,0 +1,97 @@
+package main
+
+import (
+	"encoding/json"
+	"flag"
+	"fmt"
+	"log"
+	"os"
+	"time"
+
+	"github.com/webview/webview_go"
+)
+
+// Config holds application configuration
+type Config struct {
+	MusicFolder string `json:"music_folder"`
+	Port        int    `json:"port"`
+	AutoScan    bool   `json:"auto_scan"`
+}
+
+func main() {
+	// Command line flags
+	configPath := flag.String("config", "config.json", "Path to config file")
+	port := flag.Int("port", 8080, "Server port")
+	musicFolder := flag.String("music", "", "Music folder path")
+	flag.Parse()
+
+	// Load or create config
+	config := loadConfig(*configPath, *port, *musicFolder)
+
+	// Validate music folder
+	if config.MusicFolder == "" {
+		log.Fatal("Music folder not specified. Use -music flag or config.json")
+	}
+
+	if _, err := os.Stat(config.MusicFolder); os.IsNotExist(err) {
+		log.Fatalf("Music folder does not exist: %s", config.MusicFolder)
+	}
+
+	// Initialize music library
+	library := NewLibrary(config.MusicFolder)
+	log.Printf("Scanning music library: %s", config.MusicFolder)
+	if err := library.Scan(); err != nil {
+		log.Fatalf("Failed to scan library: %v", err)
+	}
+	log.Printf("Found %d songs", len(library.Songs))
+
+	// Start HTTP server in background
+	server := NewServer(config.Port, library)
+	go func() {
+		log.Printf("Starting server on http://localhost:%d", config.Port)
+		if err := server.Start(); err != nil {
+			log.Fatalf("Failed to start server: %v", err)
+		}
+	}()
+
+	// Wait for server to start
+	time.Sleep(500 * time.Millisecond)
+
+	// Create native window
+	w := webview_go.New(true)
+	defer w.Destroy()
+	w.SetTitle("Music Player")
+	w.SetSize(1200, 800, webview_go.HintNone)
+	w.Navigate(fmt.Sprintf("http://localhost:%d", config.Port))
+	w.Run()
+}
+
+// loadConfig loads configuration from file or creates default
+func loadConfig(path string, port int, musicFolder string) Config {
+	config := Config{
+		Port:     port,
+		AutoScan: true,
+	}
+
+	// Try to load from file
+	if data, err := os.ReadFile(path); err == nil {
+		if err := json.Unmarshal(data, &config); err != nil {
+			log.Printf("Warning: Failed to parse config: %v", err)
+		}
+	}
+
+	// Override with command line flags
+	if port != 8080 {
+		config.Port = port
+	}
+	if musicFolder != "" {
+		config.MusicFolder = musicFolder
+	}
+
+	// Save config
+	if data, err := json.MarshalIndent(config, "", "  "); err == nil {
+		os.WriteFile(path, data, 0644)
+	}
+
+	return config
+}
