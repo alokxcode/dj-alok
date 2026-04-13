@@ -2,6 +2,8 @@
 
 A fast, minimalist music player for Linux built with Go and vanilla HTML/CSS/JS.
 
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/622ebf02-a8e8-4746-81da-d76fb3a2bde5" />
+
 ## Features
 
 - 🎵 **Fast Performance** - Built with Go for lightning-fast audio streaming
