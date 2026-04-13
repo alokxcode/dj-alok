@@ -1,7 +1,10 @@
 # Music Player
 
 A fast, minimalist music player for Linux built with Go and vanilla HTML/CSS/JS.
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/42f346b5-264c-4d3e-af90-d49ed19934bd" />
+
+
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/b0284b6b-df6a-46d6-9bf7-5e283d477ed9" />
+
 
 MORE IMAGES BELOW.
 
@@ -164,11 +167,11 @@ MIT License - Feel free to use and modify!
 
 ---
 
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/b0284b6b-df6a-46d6-9bf7-5e283d477ed9" />
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/95114cc8-d0f3-402c-86bb-56059eae4246" />
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/42f346b5-264c-4d3e-af90-d49ed19934bd" />
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/fb63b490-feec-4b09-ad27-941e0898a2fb" />
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/622ebf02-a8e8-4746-81da-d76fb3a2bde5" />
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/3321e7a5-39cf-4f33-8ab1-bd76852d14dd" />
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/ab4b8704-5e3b-44da-9211-29b357e08ac1" />
+
 
 **Built with ❤️ for music lovers who appreciate simplicity and speed**
